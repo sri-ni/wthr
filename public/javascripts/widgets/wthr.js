@@ -53,29 +53,49 @@
     console.log('unitsObj = ', unitsObj);
     console.log('locationObj = ', locationObj);
 
-    var currentConditionTmpl = '<h3>'
+    var currentConditionTmpl = '<h3>Weather in <strong>'
       + locationObj.city + ', ' + locationObj.region
-      + '</h3>'
-      + '<i class="wi wi-yahoo-'+ currentConditionObj.code +'"></i>'
+      + '</strong></h3>'
       + '<h2>' + currentConditionObj.temp
-      + '° ' + unitsObj.temperature + '</h2>'
-      + '<h5>' + currentConditionObj.text + '</h5>';
+      + '° ' + unitsObj.temperature
+      + '</h2>'
+      + '<figure>'
+      + '<i class="wi wi-yahoo-'+ currentConditionObj.code +'"></i>'
+      + '<figcaption>' + currentConditionObj.text + '</figcaption>'
+      + '</figure>';
 
-    var forecastTmpl = '',
-      forecaseItemTmpl = '';
+    var forecastTmpl = '';
+    forecastTmpl = renderForecast(forecastObj);
 
-    for (var i=0; i<5; i++) {
-      forecaseItemTmpl = '<div class="forecast-item">'
-        + '<h4>' + forecastObj[i].day + '</h4>'
-        + '<i class="wi wi-yahoo-'+ forecastObj[i].code +'"></i>'
-        + forecastObj[i].high + '/' + forecastObj[i].low
-        + '</div>';
-      forecastTmpl+=forecaseItemTmpl;
-    }
-
-    div.innerHTML = currentConditionTmpl + forecastTmpl;
+    div.innerHTML = '<article>'
+    + '<section class="current-weather">'
+    + currentConditionTmpl
+    + '</section>'
+    + '<aside class="forecast">'
+    + '<h3>5-day forecast</h3>'
+    + forecastTmpl
+    + '</aside>'
+    + '</article>';
   }
 
+  function renderForecast(forecastObj) {
+    var forecastTmpl = '';
+
+    for (var i=0; i<5; i++) {
+      forecastTmpl += '<article class="forecast-item">'
+        + '<header>' + forecastObj[i].day + '</header>'
+        + '<figure>'
+        + '<i class="wi wi-yahoo-'+ forecastObj[i].code +'"></i>'
+        + '<figcaption>' + forecastObj[i].text + '</figcaption>'
+        + '</figure>'
+        + '<span>'
+        + forecastObj[i].high + '° ' + '/ ' + forecastObj[i].low + '°'
+        + '</span>'
+        + '</article>';
+    }
+
+    return '<section class="forecast-list">' + forecastTmpl + '</section>';
+  }
 
   var weatherUrl = 'https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="austin, tx")&format=json&env=store://datatables.org/alltableswithke';
 
