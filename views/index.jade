@@ -2,10 +2,10 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  hr
   
   
-  script#wthr-widget.wthr.widget(type='text/javascript').
+  script#wthr-widget-embed.wthr.widget(type='text/javascript').
     (function() {
     function load_wthr(){
     var s = document.createElement('script');
@@ -13,8 +13,11 @@ block content
     s.async = true;
     var theUrl = 'http://localhost:3000/widgets/wthr';
     //- var theUrl = 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js';
-    s.src = theUrl + ( theUrl.indexOf("?") >= 0 ? "&" : "?") + 'ref=' + encodeURIComponent(window.location.href);
-    var embedder = document.getElementById('wthr-widget');
+    s.src = theUrl 
+      + ( theUrl.indexOf("?") >= 0 ? "&" : "?") 
+      + 'ref=' 
+      + encodeURIComponent(window.location.href);
+    var embedder = document.getElementById('wthr-widget-embed');
     embedder.parentNode.insertBefore(s, embedder);
     }
     if (window.attachEvent)
