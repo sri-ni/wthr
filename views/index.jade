@@ -3,3 +3,22 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  
+  
+  script#wthr-widget.wthr.widget(type='text/javascript').
+    (function() {
+    function load_wthr(){
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    var theUrl = 'http://localhost:3000/widgets/wthr';
+    //- var theUrl = 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js';
+    s.src = theUrl + ( theUrl.indexOf("?") >= 0 ? "&" : "?") + 'ref=' + encodeURIComponent(window.location.href);
+    var embedder = document.getElementById('wthr-widget');
+    embedder.parentNode.insertBefore(s, embedder);
+    }
+    if (window.attachEvent)
+    window.attachEvent('onload', load_wthr);
+    else
+    window.addEventListener('load', load_wthr, false);
+    })();
