@@ -53,12 +53,13 @@
     console.log('unitsObj = ', unitsObj);
     console.log('locationObj = ', locationObj);
 
-    var currentConditionTmpl = '<h3>Weather in <strong>'
+    var currentConditionTmpl = '<h3>'
       + locationObj.city + ', ' + locationObj.region
-      + '</strong></h3>'
+      + '</h3>'
       + '<h2>' + currentConditionObj.temp
-      + '° ' + unitsObj.temperature
+      + '° '
       + '</h2>'
+      + '<span>' + unitsObj.temperature + '</span>'
       + '<figure>'
       + '<i class="wi wi-yahoo-'+ currentConditionObj.code +'"></i>'
       + '<figcaption>' + currentConditionObj.text + '</figcaption>'
@@ -67,12 +68,11 @@
     var forecastTmpl = '';
     forecastTmpl = renderForecast(forecastObj);
 
-    div.innerHTML = '<article>'
+    div.innerHTML = '<article id="wthr-container">'
     + '<section class="current-weather">'
     + currentConditionTmpl
     + '</section>'
     + '<aside class="forecast">'
-    + '<h3>5-day forecast</h3>'
     + forecastTmpl
     + '</aside>'
     + '</article>';
@@ -84,20 +84,28 @@
     for (var i=0; i<5; i++) {
       forecastTmpl += '<article class="forecast-item">'
         + '<header>' + forecastObj[i].day + '</header>'
+        + '<span class="readings">'
+        + forecastObj[i].high + '°' + '/' + forecastObj[i].low + '°'
+        + '</span>'
         + '<figure>'
         + '<i class="wi wi-yahoo-'+ forecastObj[i].code +'"></i>'
-        + '<figcaption>' + forecastObj[i].text + '</figcaption>'
         + '</figure>'
-        + '<span>'
-        + forecastObj[i].high + '° ' + '/ ' + forecastObj[i].low + '°'
-        + '</span>'
         + '</article>';
     }
 
     return '<section class="forecast-list">' + forecastTmpl + '</section>';
   }
 
-  var weatherUrl = 'https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="austin, tx")&format=json&env=store://datatables.org/alltableswithke';
+  var weatherUrl = 'https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="palo alto, ca")&format=json&env=store://datatables.org/alltableswithke';
+
+  div.innerHTML = '<article id="wthr-container">'
+  + '<section class="current-weather loader">'
+  + '<header class="loader"></header>'
+  + '<article class="loader"></article>'
+  + '</section>'
+  + '<aside class="forecast loader">'
+  + '</aside>'
+  + '</article>';
 
   get(weatherUrl).then(function(response) {
     var weatherData = JSON.parse(response);

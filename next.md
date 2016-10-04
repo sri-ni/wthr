@@ -1,9 +1,7 @@
 ## Todo
-- html semantic tags
-- styling
 - styling independent of host page (clean reset)
 - fit dimensions
-- skeleton loading
+- refactor
 - user options
 - test independent / hosting S3 etc
 
@@ -14,3 +12,6 @@
 - url get of weather data
 - template construction
 - weather icons
+- html semantic tags
+- styling
+- skeleton loading
