@@ -1,8 +1,8 @@
 ## Todo
-- styling independent of host page (clean reset)
+- test independent / hosting S3 etc
 - refactor
 - user options
-- test independent / hosting S3 etc
+
 
 ## Done
 - embed script
@@ -15,3 +15,4 @@
 - styling
 - skeleton loading
 - fit dimensions
+- styling independent of host page (clean reset)

@@ -18,7 +18,7 @@
 
   var div = document.createElement('div');
   div.id = 'wthr-widget';
-  div.className = 'wthr widget';
+  div.className = 'wthr widget'; //cleanslate
 
   var scriptTags = document.getElementsByTagName('script');
   var requestUrl = 'widgets/wthr';
@@ -30,15 +30,23 @@
     }
   }
 
-  var styleTags = [];
+  var styleLinks = [
+      "https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css",
+      // "../../stylesheets/cleanslate.css",
+      "../../stylesheets/style.css"
+    ],
+    styleTags = [];
   if(styleTags.length == 0) {
-    var styleTag = document.createElement("link");
-    styleTag.rel = "stylesheet";
-    styleTag.type = "text/css";
-    styleTag.href =  "https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css";
-    styleTag.media = "all";
-    document.getElementsByTagName('head')[0].appendChild(styleTag);
-    styleTags.push(styleTag);
+    var styleTag;
+    for (var i=0; i<styleLinks.length; i++) {
+      styleTag = document.createElement("link");
+      styleTag.rel = "stylesheet";
+      styleTag.type = "text/css";
+      styleTag.href = styleLinks[i];
+      styleTag.media = "all";
+      document.getElementsByTagName('head')[0].appendChild(styleTag);
+      styleTags.push(styleTag);
+    }
   }
 
   function parseWeather(data) {

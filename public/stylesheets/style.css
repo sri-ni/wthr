@@ -1,27 +1,24 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 50px !important;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif !important;
 }
 
 a {
-  color: #00B7FF;
+  color: #00B7FF !important;
 }
 
 figure {
-  margin: 0;
+  margin: 0 !important;
 }
 
 #wthr-widget{
-  background: #EFEFEF;
-  border-radius: 5px;
-  box-sizing: border-box;
-  height: 160px;
-  padding: 10px;
-  /*position: absolute;*/
-  margin:0 auto;
-  /*left:50%;*/
-  /*top:50%;*/
-  width: 310px;
+  background: #EFEFEF !important;
+  border-radius: 5px !important;
+  box-sizing: border-box !important;
+  height: 160px !important;
+  padding: 10px !important;
+  margin:0 auto !important;
+  width: 310px !important;
 }
 
 @-webkit-keyframes pulsate {
@@ -31,83 +28,83 @@ figure {
 }
 
 .current-weather.loader header{
-  background: #aaa;
-  height: 20px;
-  margin-left: 20%;
-  width: 60%;
+  background: #aaa !important;
+  height: 20px !important;
+  margin-left: 20% !important;
+  width: 60% !important;
 }
 .current-weather.loader article{
-  background: #aaa;
-  height: 50px;
-  margin-top: 10px;
-  width: 100%;
+  background: #aaa !important;
+  height: 50px !important;
+  margin-top: 10px !important;
+  width: 100% !important;
 }
 .forecast.loader {
-  background: #ccc;
-  height: 40px;
-  margin-top: 10px;
-  width: 100%;
+  background: #ccc !important;
+  height: 40px !important;
+  margin-top: 10px !important;
+  width: 100% !important;
 }
 .loader {
-  -webkit-animation: pulsate 0.7s infinite linear;
-  -moz-animation: pulsate 0.7s infinite linear;
-  -animation: pulsate 0.7s infinite linear;
+  -webkit-animation: pulsate 0.7s infinite linear !important;
+  -moz-animation: pulsate 0.7s infinite linear !important;
+  -animation: pulsate 0.7s infinite linear !important;
 }
 
 .current-weather {
-  text-align: center;
+  text-align: center !important;
 }
 .current-weather h3 {
-  font-weight: lighter;
-  margin: 0;
-  text-decoration: underline;
+  font-weight: lighter !important;
+  margin: 0 !important;
+  text-decoration: underline !important;
 }
 .current-weather h2 {
-  display: inline-block;
-  font-size: 35px;
-  margin: 10px 0px;
+  display: inline-block !important;
+  font-size: 35px !important;
+  margin: 10px 0px !important;
 }
 
 .current-weather figure {
-  display: inline-block;
-  font-size: 25px;
-  margin: 10px 10px 10px 40px;
-  vertical-align: top;
+  display: inline-block !important;
+  font-size: 25px !important;
+  margin: 10px 10px 10px 40px !important;
+  vertical-align: top !important;
 }
 .current-weather figure i {
-  float: left;
-  margin-top: 10px;
+  float: left !important;
+  margin-top: 10px !important;
 }
 .current-weather figcaption {
-  font-size: 14px;
-  float: left;
-  margin-top: 15px;
-  margin-left: 10px;
+  font-size: 14px !important;
+  float: left !important;
+  margin-top: 15px !important;
+  margin-left: 10px !important;
 }
 
 .forecast-list {
-  margin: 0;
-  padding: 0;
-  text-align: center;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: center !important;
 }
 .forecast-item {
-  display: inline-block;
-  list-style: none;
-  margin: 5px;
-  text-align: center;
+  display: inline-block !important;
+  list-style: none !important;
+  margin: 5px !important;
+  text-align: center !important;
 }
 .forecast-item header {
-  color: #777;
-  font-weight: 200;
-  font-family: 'Helvetica Neue';
-  font-size: 12px;
-  text-transform: uppercase;
+  color: #777 !important;
+  font-weight: 200 !important;
+  font-family: 'Helvetica Neue' !important;
+  font-size: 12px !important;
+  text-transform: uppercase !important;
 }
 .forecast-item span.readings {
-  font-size: 12px;
+  font-size: 12px !important;
 }
 .forecast-item figure {
-  color: #888;
-  font-size: 12px;
-  margin-top: 5px;
+  color: #888 !important;
+  font-size: 12px !important;
+  margin-top: 5px !important;
 }
