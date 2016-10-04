@@ -1,7 +1,5 @@
 (function(global){
 
-  console.log('wthr widget is here!');
-
   // add array index of for old browsers (IE<9)
   if (!Array.prototype.indexOf) {
     Array.prototype.indexOf = function(obj, start) {
@@ -48,27 +46,20 @@
     var forecastObj = data.query.results.channel.item.forecast;
     var unitsObj = data.query.results.channel.units;
     var locationObj = data.query.results.channel.location;
-    console.log('currentConditionObj = ', currentConditionObj);
-    console.log('forecastObj = ', forecastObj);
-    console.log('unitsObj = ', unitsObj);
-    console.log('locationObj = ', locationObj);
+    var parsedWeatherObj = {
+      'condition': currentConditionObj,
+      'forecast': forecastObj,
+      'units': unitsObj,
+      'location': locationObj
+    }
 
-    var currentConditionTmpl = '<h3>'
-      + locationObj.city + ', ' + locationObj.region
-      + '</h3>'
-      + '<h2>' + currentConditionObj.temp
-      + '° '
-      + '</h2>'
-      + '<span>' + unitsObj.temperature + '</span>'
-      + '<figure>'
-      + '<i class="wi wi-yahoo-'+ currentConditionObj.code +'"></i>'
-      + '<figcaption>' + currentConditionObj.text + '</figcaption>'
-      + '</figure>';
+    renderWeather(parsedWeatherObj);
+  }
 
-    var forecastTmpl = '';
-    forecastTmpl = renderForecast(forecastObj);
-
-    div.innerHTML = '<article id="wthr-container">'
+  function renderWeather(weatherObj) {
+    var currentConditionTmpl = renderCondition(weatherObj);
+    var forecastTmpl = renderForecast(weatherObj.forecast);
+    var finalTmpl = '<article id="wthr-container">'
     + '<section class="current-weather">'
     + currentConditionTmpl
     + '</section>'
@@ -76,6 +67,27 @@
     + forecastTmpl
     + '</aside>'
     + '</article>';
+
+    div.innerHTML = finalTmpl;
+  }
+
+  function renderCondition(weatherObj) {
+    var condition = weatherObj.condition;
+    var units = weatherObj.units;
+    var location = weatherObj.location;
+    var currentConditionTmpl = '<h3>'
+      + location.city + ', ' + location.region
+      + '</h3>'
+      + '<h2>' + condition.temp
+      + '° '
+      + '</h2>'
+      + '<span>' + units.temperature + '</span>'
+      + '<figure>'
+      + '<i class="wi wi-yahoo-'+ condition.code +'"></i>'
+      + '<figcaption>' + condition.text + '</figcaption>'
+      + '</figure>';
+
+    return currentConditionTmpl;
   }
 
   function renderForecast(forecastObj) {
@@ -96,7 +108,7 @@
     return '<section class="forecast-list">' + forecastTmpl + '</section>';
   }
 
-  var weatherUrl = 'https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="palo alto, ca")&format=json&env=store://datatables.org/alltableswithke';
+  var weatherUrl = 'https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="austin, tx")&format=json&env=store://datatables.org/alltableswithke';
 
   div.innerHTML = '<article id="wthr-container">'
   + '<section class="current-weather loader">'
@@ -109,12 +121,10 @@
 
   get(weatherUrl).then(function(response) {
     var weatherData = JSON.parse(response);
-    console.log('weatherData = ', weatherData);
     parseWeather(weatherData);
   }, function(error) {
     console.error("Failed!", error);
   });
-
 
   function get(url) {
     return new Promise(function(resolve, reject) {

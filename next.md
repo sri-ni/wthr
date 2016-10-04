@@ -1,6 +1,5 @@
 ## Todo
 - styling independent of host page (clean reset)
-- fit dimensions
 - refactor
 - user options
 - test independent / hosting S3 etc
@@ -15,3 +14,4 @@
 - html semantic tags
 - styling
 - skeleton loading
+- fit dimensions
