@@ -16,20 +16,6 @@
     };
   }
 
-  var div = document.createElement('div');
-  div.id = 'wthr-widget';
-  div.className = 'wthr widget'; //cleanslate
-
-  var scriptTags = document.getElementsByTagName('script');
-  var requestUrl = 'widgets/wthr';
-
-  for(var i = 0; i < scriptTags.length; i++) {
-    var scriptTag = scriptTags[i];
-    if (scriptTag.src.indexOf(requestUrl)>=0) {
-      scriptTag.parentNode.insertBefore(div, scriptTag);
-    }
-  }
-
   var styleLinks = [
       "https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css",
       // "../../stylesheets/cleanslate.css",
@@ -48,6 +34,19 @@
       styleTags.push(styleTag);
     }
   }
+
+  var div = document.createElement('div');
+  div.id = 'wthr-widget';
+  div.className = 'wthr widget'; //cleanslate
+
+  // var scriptTags = document.getElementsByTagName('script');
+  // var requestUrl = 'widgets/wthr';
+  // // for(var i = 0; i < scriptTags.length; i++) {
+  //   var scriptTag = scriptTags[i];
+  //   if (scriptTag.src.indexOf(requestUrl)>=0) {
+  //     scriptTag.parentNode.insertBefore(div, scriptTag);
+  //   }
+  // }
 
   function parseWeather(data) {
     var currentConditionObj = data.query.results.channel.item.condition;
@@ -116,29 +115,11 @@
     return '<section class="forecast-list">' + forecastTmpl + '</section>';
   }
 
-  var weatherUrl = 'https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="austin, tx")&format=json&env=store://datatables.org/alltableswithke';
-
-  div.innerHTML = '<article id="wthr-container">'
-  + '<section class="current-weather loader">'
-  + '<header class="loader"></header>'
-  + '<article class="loader"></article>'
-  + '</section>'
-  + '<aside class="forecast loader">'
-  + '</aside>'
-  + '</article>';
-
-  get(weatherUrl).then(function(response) {
-    var weatherData = JSON.parse(response);
-    parseWeather(weatherData);
-  }, function(error) {
-    console.error("Failed!", error);
-  });
 
   function get(url) {
     return new Promise(function(resolve, reject) {
       var req = new XMLHttpRequest();
       req.open('GET', url);
-
       req.onload = function() {
         if (req.status == 200) {
           resolve(req.response);
@@ -147,13 +128,57 @@
           reject(Error(req.statusText));
         }
       };
-
       req.onerror = function() {
         reject(Error("Network Error"));
       };
-
       req.send();
     });
   }
 
+  function init(options) {
+    if (!options.el || !options.location) {
+      console.error('[wthr widget]: Both config options "el" and "location" must be provided.');
+      return;
+    }
+
+    var weatherUrl = 'https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="'+ options.location +'")&format=json&env=store://datatables.org/alltableswithke';
+
+    var parentEl = document.getElementById(options.el);
+    if (!parentEl) {
+
+    }
+    parentEl.appendChild(div);
+
+    div.innerHTML = '<article id="wthr-container">'
+    + '<section class="current-weather loader">'
+    + '<header class="loader"></header>'
+    + '<article class="loader"></article>'
+    + '</section>'
+    + '<aside class="forecast loader">'
+    + '</aside>'
+    + '</article>';
+
+    get(weatherUrl).then(function(response) {
+      var weatherData = JSON.parse(response);
+      parseWeather(weatherData);
+    }, function(error) {
+      console.error("Failed!", error);
+    });
+  }
+
+  if (!window.wthr) {
+    window.wthr = {
+      init: init
+    };
+  }
+
 })(this);
+
+// Usage
+var wthr = window.wthr || null;
+if (wthr && wthr.init) {
+  wthr.init({
+    el: 'wthr-widget-box',
+    location: 'milan'
+  });
+}

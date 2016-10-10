@@ -3,6 +3,8 @@ extends layout
 block content
   h1= title  
   
+  div#wthr-widget-box
+  
   script#wthr-widget-embed.wthr.widget(type='text/javascript').
     (function() {
     function load_wthr(){
@@ -23,3 +25,4 @@ block content
     else
     window.addEventListener('load', load_wthr, false);
     })();
+    
