@@ -1,6 +1,4 @@
 ## Todo
-- browser testing IE11
-
 
 ## Done
 - embed script
@@ -21,3 +19,4 @@
 - test independent / hosting S3 etc
 - check size
 - refactor / cleanup / error checking
+- browser testing IE11
