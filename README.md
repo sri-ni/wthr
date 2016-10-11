@@ -10,7 +10,7 @@ Embeddable reusable plain javascript widget.
 
 #### Embed script
 Place this script at the end of your base render template, above the `</body>` tag.
-```
+```javascript
 <script id="wthr-widget-embed" type="text/javascript" class="wthr widget">
   (function() {
     function load_wthr(){
@@ -44,7 +44,7 @@ It's hosted in an AWS S3 bucket `https://s3.amazonaws.com/wdgts/wthr/wthr.css`
 #### Initialization
 Provide the container *id* ```<div id='this-one'></div>``` to render the widget, along with the location in the format of *city* or *city,state_initials*.
 
-```
+```javascript
 var wthr = window.wthr || null;
 
 if (wthr && wthr.init) {
