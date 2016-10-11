@@ -62,6 +62,7 @@ if (wthr && wthr.init) {
 3. Run npm script `npm start`
 4. Open `localhost:3000` in browser
 5. On dev tools console run the usage initialization script as below
+
 ```javascript
 var wthr = window.wthr || null;
 
@@ -71,4 +72,14 @@ if (wthr && wthr.init) {
     location: 'milan'
   });
 }
+```
+
+### IE11 support
+The only dependency is using ES6 promises. If your primary browser is Microsoft IE11 use the following ES6 polyfill script.
+
+*Note:* ES6 promises are supported in IE Edge.
+
+```javascript
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.4/bluebird.min.js">
+</script>
 ```

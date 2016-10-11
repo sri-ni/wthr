@@ -1,5 +1,5 @@
 ## Todo
-- browser testing
+- browser testing IE11
 
 
 ## Done
