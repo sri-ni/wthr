@@ -143,7 +143,8 @@
 
     var parentEl = document.getElementById(options.el);
     if (!parentEl) {
-
+      console.error('[wthr widget]: Cannot find the container div id=', options.el);
+      return;
     }
     parentEl.appendChild(div);
 
