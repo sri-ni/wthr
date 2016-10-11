@@ -54,3 +54,21 @@ if (wthr && wthr.init) {
   });
 }
 ```
+
+### Usage of Repo
+
+1. Clone repo `https://github.com/sri-ni/wthr.git`
+2. Run `npm install` on command line
+3. Run npm script `npm start`
+4. Open `localhost:3000` in browser
+5. On dev tools console run the usage initialization script as below
+```javascript
+var wthr = window.wthr || null;
+
+if (wthr && wthr.init) {
+  wthr.init({
+    el: 'wthr-widget-box',
+    location: 'milan'
+  });
+}
+```
