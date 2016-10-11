@@ -38,15 +38,6 @@
   div.id = 'wthr-widget';
   div.className = 'wthr widget'; //cleanslate
 
-  // var scriptTags = document.getElementsByTagName('script');
-  // var requestUrl = 'widgets/wthr';
-  // // for(var i = 0; i < scriptTags.length; i++) {
-  //   var scriptTag = scriptTags[i];
-  //   if (scriptTag.src.indexOf(requestUrl)>=0) {
-  //     scriptTag.parentNode.insertBefore(div, scriptTag);
-  //   }
-  // }
-
   function parseWeather(data) {
     if (!data.query.results) {
       div.innerHTML = '<article id="wthr-container" class="no-results">'
@@ -180,12 +171,3 @@
   }
 
 })(this);
-
-// Usage
-// var wthr = window.wthr || null;
-// if (wthr && wthr.init) {
-//   wthr.init({
-//     el: 'wthr-widget-box',
-//     location: 'milan'
-//   });
-// }

@@ -1,8 +1,5 @@
 ## Todo
-- refactor / cleanup / error checking
 - browser testing
-- check size
-
 
 
 ## Done
@@ -22,3 +19,5 @@
 2. city, state
 - viewport centered
 - test independent / hosting S3 etc
+- check size
+- refactor / cleanup / error checking
