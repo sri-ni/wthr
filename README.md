@@ -1,8 +1,9 @@
 # wthr
 
 ### Weather Widget
-
 Embeddable reusable plain javascript widget.
+
+![alt wthr widget](https://github.com/sri-ni/wthr/blob/master/public/images/wthr-widget.png)
 
 ### Usage
 
