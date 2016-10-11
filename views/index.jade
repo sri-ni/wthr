@@ -11,8 +11,8 @@ block content
     var s = document.createElement('script');
     s.type = 'text/javascript';
     s.async = true;
-    var theUrl = 'http://localhost:3000/widgets/wthr';
-    //- var theUrl = 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js';
+    //- var theUrl = 'http://localhost:3000/widgets/wthr';
+    var theUrl = 'https://s3.amazonaws.com/wdgts/wthr/wthr.js';
     s.src = theUrl 
       + ( theUrl.indexOf("?") >= 0 ? "&" : "?") 
       + 'ref=' 
@@ -25,4 +25,3 @@ block content
     else
     window.addEventListener('load', load_wthr, false);
     })();
-    

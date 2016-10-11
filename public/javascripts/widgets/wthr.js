@@ -18,8 +18,7 @@
 
   var styleLinks = [
       "https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css",
-      // "../../stylesheets/cleanslate.css",
-      "../../stylesheets/style.css"
+      "https://s3.amazonaws.com/wdgts/wthr/wthr.css"
     ],
     styleTags = [];
   if(styleTags.length == 0) {
@@ -49,6 +48,14 @@
   // }
 
   function parseWeather(data) {
+    if (!data.query.results) {
+      div.innerHTML = '<article id="wthr-container" class="no-results">'
+      + '<h1>Not Available</h1>'
+      + '<p>Please Retry!</p>'
+      + '</article>';
+      return;
+    }
+
     var currentConditionObj = data.query.results.channel.item.condition;
     var forecastObj = data.query.results.channel.item.forecast;
     var unitsObj = data.query.results.channel.units;
@@ -175,10 +182,10 @@
 })(this);
 
 // Usage
-var wthr = window.wthr || null;
-if (wthr && wthr.init) {
-  wthr.init({
-    el: 'wthr-widget-box',
-    location: 'milan'
-  });
-}
+// var wthr = window.wthr || null;
+// if (wthr && wthr.init) {
+//   wthr.init({
+//     el: 'wthr-widget-box',
+//     location: 'milan'
+//   });
+// }

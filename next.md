@@ -1,9 +1,8 @@
 ## Todo
-- test independent / hosting S3 etc
 - refactor / cleanup / error checking
 - browser testing
 - check size
-- works in codepen
+
 
 
 ## Done
@@ -22,3 +21,4 @@
 1. div element ID for placing #wthr-widget as child
 2. city, state
 - viewport centered
+- test independent / hosting S3 etc

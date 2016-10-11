@@ -108,3 +108,8 @@ figure {
   font-size: 12px !important;
   margin-top: 5px !important;
 }
+
+.no-results h1,
+.no-results p {
+  text-align: center;
+}
